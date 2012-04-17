@@ -23,7 +23,8 @@ public class Song implements Comparable<Song>, java.io.Serializable {
 
     @Override
     public int compareTo(Song o) {
-       return 0; 
+        //TODO compateTo not implemented
+        return 0; 
     }
     
     public static Comparator<Song> SongTitleComparator = new Comparator<Song>() {

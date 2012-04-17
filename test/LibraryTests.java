@@ -16,6 +16,7 @@ public class LibraryTests {
     static Song song3 = new Song("Lately", "Jodeci");
     static Song song4 = new Song("Baby Got Back", "Sir Mix A Lot");
     
+    static List songList; 
     
     public LibraryTests() {
     }
@@ -83,12 +84,13 @@ public class LibraryTests {
     }   
     
     @Test
-    public void sortByArtistTest() {
-        playerLibrary.addSong(song2); 
+    public void sortBySongTitleTest() {
+        playerLibrary.addSong(song1); 
+        playerLibrary.addSong(song2);
         playerLibrary.addSong(song3);
-        playerLibrary.addSong(song1);
-        List allSongs = playerLibrary.getAllSongs();
-        playerLibrary.sortLibraryByArtist(allSongs); 
-        assertEquals(0, playerLibrary.getSongIndex(song1));
+        playerLibrary.sortLibraryBySongTitle();
+        assertEquals(0, playerLibrary.getSongIndex(song3));
+        assertEquals(1, playerLibrary.getSongIndex(song1)); 
+        assertEquals(2, playerLibrary.getSongIndex(song2));
     }
 }
