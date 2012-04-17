@@ -16,6 +16,8 @@ public class MediaPlayerTests {
     static Song song2 = new Song("In The End", "Linkin Park"); 
     static Song song3 = new Song("Faith", "Limp Bizkit");
     static Song song4 = new Song("Jumper", "Third Eye Blind");
+    
+    static Song currentSong;
 
     public MediaPlayerTests() {
     }
@@ -45,17 +47,26 @@ public class MediaPlayerTests {
 
    @Test
    public void getCurrentSongTest() {
-       mediaPlayer.getCurrentSong(currentPlaylist); 
+       mediaPlayer.getCurrentSong(); 
        assertEquals(song1, mediaPlayer.getCurrentSong()); 
-   }
-    
+   }    
     
     @Test
     public void skipPlaylistSongTest() {
-        mediaPlayer.getCurrentSong(currentPlaylist);
+        mediaPlayer.getCurrentSong();
         mediaPlayer.getNextSong(currentPlaylist);
         mediaPlayer.getNextSong(currentPlaylist);
-        assertEquals(song3, mediaPlayer.getCurrentSong());
-        
+        assertEquals(song3, mediaPlayer.getCurrentSong());       
+    }
+    
+    @Test 
+    public void isPlayingSongTest() {
+        mediaPlayer.isPlaying(currentSong);
+        assertTrue(mediaPlayer.isPlaying(currentSong));
+    }
+    
+    @Test
+    public void stopPlayingSongTest() {
+
     }
 }

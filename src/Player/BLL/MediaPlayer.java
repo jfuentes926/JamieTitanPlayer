@@ -1,6 +1,5 @@
 package Player.BLL;
 
-
 public class MediaPlayer {
     
     Playlist currentPlaylist;
@@ -32,20 +31,25 @@ public class MediaPlayer {
     public int getSongIndex() {
         return songIndex;
     }
-
-    
-    
-    public Song getCurrentSong(Playlist currentPlaylist) {
-        // TODO add MediaPlayer getCurrentSong method
-        
-        
-        return currentSong; 
-    }
-    
+   
     public Song getNextSong(Playlist currentPlaylist) {
-        // TODO add MediaPlayer skipCurrentSong method
         songIndex ++;
         return currentSong; 
+    }
+
+    public boolean isPlaying(Song currentSong) {
+        return true;
+    }
+
+    public class PlaySongClass implements Runnable {
+        public PlaySongClass(Song currentSong) {
+            //TODO 
+            
+        }
+        
+        public void run() {
+            
+        }
     }
 
     
