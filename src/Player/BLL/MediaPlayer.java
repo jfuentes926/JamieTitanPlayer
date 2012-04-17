@@ -1,6 +1,6 @@
 package Player.BLL;
-
-public class MediaPlayer {
+    
+public class MediaPlayer implements Runnable {
     
     Playlist currentPlaylist;
     private Song currentSong;
@@ -41,16 +41,13 @@ public class MediaPlayer {
         return true;
     }
 
-    public class PlaySongClass implements Runnable {
-        public PlaySongClass(Song currentSong) {
-            //TODO 
-            
-        }
+    @Override
+    public void run() {
         
-        public void run() {
-            
-        }
     }
+
+
+        
 
     
 }

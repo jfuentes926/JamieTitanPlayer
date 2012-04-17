@@ -2,21 +2,28 @@ package Player.BLL;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import Player.BLL.Song; 
 
 
 public class Library {
     
-    // TODO research tree set 
-    
-    public static List<Song> songList;    
-    
+    public static List<Song> songList;
+    private int songIndex; 
+        
     public Library() {
-        songList = new ArrayList<Song>();        
+        songList = new ArrayList<Song>();
+        songIndex = 0;
+    }
+
+    public int getSongIndex(Song songAdded) {
+        return songIndex;
     }
     
     public void addSong(Song songAdded) {
         songList.add(songAdded);
+        songIndex++;
     }    
     
     public int songCount() {
@@ -34,4 +41,11 @@ public class Library {
     public List getAllSongs() {
         return Collections.unmodifiableList(songList);
     }
+
+    public void sortLibraryByArtist(List songList) {
+        Song.SongTitleComparator
+
+    }  
+
+       
 }

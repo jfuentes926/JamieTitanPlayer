@@ -1,9 +1,42 @@
 package Player.BLL;
 
+import java.util.Comparator;
 
-public class Song {
+public class Song implements Comparable<Song> {
 
-    public Song(String songTitle, String songArtist) {        
+    private final String songArtist;
+
+    public String getSongArtist() {
+        return songArtist;
+    }
+    private final String songTitle;
+
+    public String getSongTitle() {
+        return songTitle;
+    }
+
+    public Song(String songTitle, String songArtist) {
+        this.songTitle = songTitle;
+        this.songArtist = songArtist;
+    }
+
+    @Override
+    public int compareTo(Song o) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
+    public static Comparator<Song> SongTitleComparator = new Comparator<Song>() {
+
+        @Override
+        public int compare(Song song1, Song song2) {
+            String songTitle1 = song1.getSongTitle();
+            String songTitle2 = song2.getSongTitle();
+
+            // ascending order
+            return songTitle1.compareToIgnoreCase(songTitle2);
+
+            //descending order
+            //return songTitle2.compareToIgnoreCase(songTitle1);
+        }
+    };
 }

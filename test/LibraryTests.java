@@ -80,5 +80,16 @@ public class LibraryTests {
         playerLibrary.removeSong(song3);
         List allSongs = playerLibrary.getAllSongs(); 
         assertFalse(allSongs.contains(song3));
-    }    
+    }   
+    
+    @Test
+    public void sortByArtistTest() {
+        playerLibrary.addSong(song2); 
+        playerLibrary.addSong(song3);
+        playerLibrary.addSong(song1);
+        List allSongs = playerLibrary.getAllSongs();
+        playerLibrary.sortLibraryByArtist(allSongs); 
+        playerLibrary.getAllSongs(); 
+        assertEquals(0, playerLibrary.getSongIndex(song1));
+    }
 }
