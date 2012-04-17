@@ -41,4 +41,21 @@ public class Song implements Comparable<Song>, java.io.Serializable {
             //return songTitle2.compareToIgnoreCase(songTitle1);
         }
     };
+    
+        public static Comparator<Song> SongArtistComparator = new Comparator<Song>() {
+
+        @Override
+        public int compare(Song song1, Song song2) {
+            String songArtist1 = song1.getSongArtist();
+            String songArtist2 = song2.getSongArtist();
+
+            // ascending order
+            return songArtist1.compareToIgnoreCase(songArtist2);
+
+            //descending order
+            //return songArtist2.compareToIgnoreCase(songArtist1);
+        }
+    };   
+    
+    
 }
