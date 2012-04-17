@@ -14,16 +14,8 @@ public class Library {
         songIndex = 0; 
     }
 
-    public static List<Song> getSongList() {
-        return songList;
-    }
-
-    public static void setSongList(List<Song> songList) {
-        Library.songList = songList;
-    }
-
-    public int getSongIndex(Song songAdded) {
-        return songList.indexOf(songAdded);
+    public int getSongIndex(Song songInList) {
+        return songList.indexOf(songInList);
     }
 
     public void addSong(Song songAdded) {
