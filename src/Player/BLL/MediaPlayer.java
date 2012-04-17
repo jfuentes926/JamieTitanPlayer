@@ -4,8 +4,10 @@ public class MediaPlayer implements Runnable {
     
     Playlist currentPlaylist;
     private Song currentSong;
-    private int songIndex; 
+    private int songIndex;
+    private boolean isPlaying;
     
+        
     public MediaPlayer(Playlist currentPlaylist) {
         setCurrentPlaylist(currentPlaylist); 
         songIndex = 0;
@@ -41,13 +43,15 @@ public class MediaPlayer implements Runnable {
         return true;
     }
 
+    public void stop() {
+        isPlaying = false; 
+    }
+
+   
     @Override
     public void run() {
         
-    }
-
-
-        
+    }     
 
     
 }
