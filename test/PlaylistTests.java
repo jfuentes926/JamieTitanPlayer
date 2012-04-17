@@ -1,5 +1,4 @@
 
-import Player.BLL.MediaPlayer;
 import Player.BLL.Playlist;
 import Player.BLL.Song;
 import org.junit.*;
@@ -9,8 +8,6 @@ import static org.junit.Assert.*;
 public class PlaylistTests {
     
     static Playlist myPlaylist; 
-    
-    static MediaPlayer mediaPlayer; 
       
     static Song song1 = new Song("Twisted", "Keith Sweat"); 
     static Song song2 = new Song("Pretty Girl", "Jon B"); 

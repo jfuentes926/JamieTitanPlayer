@@ -23,7 +23,7 @@ public class Song implements Comparable<Song>, java.io.Serializable {
 
     @Override
     public int compareTo(Song o) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       return 0; 
     }
     
     public static Comparator<Song> SongTitleComparator = new Comparator<Song>() {
