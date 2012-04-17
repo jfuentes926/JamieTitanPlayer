@@ -2,7 +2,7 @@ package Player.BLL;
 
 import java.util.Comparator;
 
-public class Song implements Comparable<Song> {
+public class Song implements Comparable<Song>, java.io.Serializable {
 
     private final String songArtist;
 
@@ -16,6 +16,7 @@ public class Song implements Comparable<Song> {
     }
 
     public Song(String songTitle, String songArtist) {
+        super(); 
         this.songTitle = songTitle;
         this.songArtist = songArtist;
     }

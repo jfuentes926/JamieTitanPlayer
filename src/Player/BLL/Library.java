@@ -43,9 +43,7 @@ public class Library {
     }
 
     public void sortLibraryByArtist(List songList) {
-        Song.SongTitleComparator
-
+        Collections.sort(songList, Song.SongTitleComparator);
     }  
-
        
 }

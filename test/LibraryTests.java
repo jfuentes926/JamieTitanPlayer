@@ -89,7 +89,6 @@ public class LibraryTests {
         playerLibrary.addSong(song1);
         List allSongs = playerLibrary.getAllSongs();
         playerLibrary.sortLibraryByArtist(allSongs); 
-        playerLibrary.getAllSongs(); 
         assertEquals(0, playerLibrary.getSongIndex(song1));
     }
 }
