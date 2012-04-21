@@ -3,7 +3,7 @@ package PlayerGUI;
 import java.awt.Component;
 import java.io.File;
 import javax.swing.JFileChooser;
-
+import javax.swing.filechooser.FileFilter;
 
 public class PlayerGUI extends javax.swing.JFrame {
 
@@ -134,6 +134,11 @@ public class PlayerGUI extends javax.swing.JFrame {
         playlistMenu.add(playlistSelectPlaylist);
 
         playlistAddSong.setText("Add Song");
+        playlistAddSong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playlistAddSongActionPerformed(evt);
+            }
+        });
         playlistMenu.add(playlistAddSong);
 
         playlistRemoveSong.setText("Remove Song");
@@ -201,31 +206,62 @@ public class PlayerGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_rewindButtonActionPerformed
 
     private void libraryAddSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_libraryAddSongActionPerformed
-        
+
         Component aComponent = null;
-        final JFileChooser fileChooser = new JFileChooser();        
-        int returnVal = fileChooser.showOpenDialog(aComponent);
+        final JFileChooser mp3fileChooser = new JFileChooser();
+        int status = mp3fileChooser.showOpenDialog(aComponent);
+        FileFilter mp3Filter = new ExtensionFileFilter(new String[]{".mp3"});
+        mp3fileChooser.setFileFilter(mp3Filter);
+        if (status == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = mp3fileChooser.getSelectedFile();
+            System.out.println(selectedFile.getParent());
+            System.out.println(selectedFile.getName());
+        } else if (status == JFileChooser.CANCEL_OPTION) {
+            System.out.println(JFileChooser.CANCEL_OPTION);
+        }
     }//GEN-LAST:event_libraryAddSongActionPerformed
 
-        class MyCustomFilter extends javax.swing.filechooser.FileFilter {
+    class ExtensionFileFilter extends FileFilter {
+
+
+        String extensions[];
+
+        public ExtensionFileFilter(String extension) {
+            this(new String[]{extension});
+        }
+
+        public ExtensionFileFilter(String extensions[]) {
+            
+            this.extensions = (String[]) extensions.clone();
+            toLower(this.extensions);
+        }
+
+        private void toLower(String array[]) {
+            for (int i = 0, n = array.length; i < n; i++) {
+                array[i] = array[i].toLowerCase();
+            }
+        }
+
         @Override
         public boolean accept(File file) {
-            // Allow only directories, or files with ".txt" extension
             return file.isDirectory() || file.getAbsolutePath().endsWith(".mp3");
         }
+        
         @Override
         public String getDescription() {
-            // This description will be displayed in the dialog,
-            // hard-coded = ugly, should be done via I18N
-            return "Text documents (*.mp3)";
+            return "MP3 files (*.mp3)";
         }
-    } 
-    
-    
-    
+        
+
+    }
+
     private void librarySongTitleSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librarySongTitleSortActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_librarySongTitleSortActionPerformed
+
+    private void playlistAddSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playlistAddSongActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_playlistAddSongActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,8 +331,5 @@ public class PlayerGUI extends javax.swing.JFrame {
     private javax.swing.JLabel volumeLabel;
     private javax.swing.JSlider volumeSlider;
     // End of variables declaration//GEN-END:variables
-
-    private javax.swing.JFileChooser fileChooser; 
-
-
+    private javax.swing.JFileChooser fileChooser;
 }
