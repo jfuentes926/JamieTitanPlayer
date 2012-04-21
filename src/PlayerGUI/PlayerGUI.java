@@ -1,13 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package PlayerGUI;
 
-/**
- *
- * @author Jamie
- */
+import java.awt.Component;
+import java.io.File;
+import javax.swing.JFileChooser;
+
+
 public class PlayerGUI extends javax.swing.JFrame {
 
     /**
@@ -26,7 +23,7 @@ public class PlayerGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        mediaStreamPanel = new javax.swing.JPanel();
         songProgressBar = new javax.swing.JProgressBar();
         rewindButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
@@ -46,16 +43,17 @@ public class PlayerGUI extends javax.swing.JFrame {
         playlistRemoveSong = new javax.swing.JMenuItem();
         libraryMenu = new javax.swing.JMenu();
         libraryShowAllSongs = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        librarySortList = new javax.swing.JMenuItem();
         libraryAddSong = new javax.swing.JMenuItem();
         libraryRemoveSong = new javax.swing.JMenuItem();
+        librarySort = new javax.swing.JMenu();
+        libraryArtistSort = new javax.swing.JMenuItem();
+        librarySongTitleSort = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Titan Music Player");
         setBackground(new java.awt.Color(153, 153, 153));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        mediaStreamPanel.setBackground(new java.awt.Color(204, 204, 204));
 
         rewindButton.setText("Rewind");
         rewindButton.addActionListener(new java.awt.event.ActionListener() {
@@ -76,14 +74,14 @@ public class PlayerGUI extends javax.swing.JFrame {
 
         currentTrackPlaying.setText("Current Track: ");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout mediaStreamPanelLayout = new javax.swing.GroupLayout(mediaStreamPanel);
+        mediaStreamPanel.setLayout(mediaStreamPanelLayout);
+        mediaStreamPanelLayout.setHorizontalGroup(
+            mediaStreamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mediaStreamPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(mediaStreamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mediaStreamPanelLayout.createSequentialGroup()
                         .addComponent(rewindButton)
                         .addGap(18, 18, 18)
                         .addComponent(stopButton)
@@ -101,16 +99,16 @@ public class PlayerGUI extends javax.swing.JFrame {
                     .addComponent(songProgressBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        mediaStreamPanelLayout.setVerticalGroup(
+            mediaStreamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mediaStreamPanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(currentTrackPlaying, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(songProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(mediaStreamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(mediaStreamPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(rewindButton)
                         .addComponent(stopButton)
                         .addComponent(playButton)
@@ -148,17 +146,6 @@ public class PlayerGUI extends javax.swing.JFrame {
         libraryShowAllSongs.setText("Show All Songs");
         libraryMenu.add(libraryShowAllSongs);
 
-        jMenu1.setText("jMenu1");
-        libraryMenu.add(jMenu1);
-
-        librarySortList.setText("Sort List");
-        librarySortList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                librarySortListActionPerformed(evt);
-            }
-        });
-        libraryMenu.add(librarySortList);
-
         libraryAddSong.setText("Add Song");
         libraryAddSong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,6 +157,21 @@ public class PlayerGUI extends javax.swing.JFrame {
         libraryRemoveSong.setText("Remove Song");
         libraryMenu.add(libraryRemoveSong);
 
+        librarySort.setText("Sort Library");
+
+        libraryArtistSort.setText("By Artist");
+        librarySort.add(libraryArtistSort);
+
+        librarySongTitleSort.setText("By Song Title");
+        librarySongTitleSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                librarySongTitleSortActionPerformed(evt);
+            }
+        });
+        librarySort.add(librarySongTitleSort);
+
+        libraryMenu.add(librarySort);
+
         applicationMenu.add(libraryMenu);
 
         setJMenuBar(applicationMenu);
@@ -180,14 +182,14 @@ public class PlayerGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mediaStreamPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(285, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(mediaStreamPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -198,13 +200,32 @@ public class PlayerGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rewindButtonActionPerformed
 
-    private void librarySortListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librarySortListActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_librarySortListActionPerformed
-
     private void libraryAddSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_libraryAddSongActionPerformed
-        // TODO add your handling code here:
+        
+        Component aComponent = null;
+        final JFileChooser fileChooser = new JFileChooser();        
+        int returnVal = fileChooser.showOpenDialog(aComponent);
     }//GEN-LAST:event_libraryAddSongActionPerformed
+
+        class MyCustomFilter extends javax.swing.filechooser.FileFilter {
+        @Override
+        public boolean accept(File file) {
+            // Allow only directories, or files with ".txt" extension
+            return file.isDirectory() || file.getAbsolutePath().endsWith(".mp3");
+        }
+        @Override
+        public String getDescription() {
+            // This description will be displayed in the dialog,
+            // hard-coded = ugly, should be done via I18N
+            return "Text documents (*.mp3)";
+        }
+    } 
+    
+    
+    
+    private void librarySongTitleSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_librarySongTitleSortActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_librarySongTitleSortActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,13 +272,14 @@ public class PlayerGUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar applicationMenu;
     private javax.swing.JLabel currentTrackPlaying;
     private javax.swing.JButton fastForwardButton;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem libraryAddSong;
+    private javax.swing.JMenuItem libraryArtistSort;
     private javax.swing.JMenu libraryMenu;
     private javax.swing.JMenuItem libraryRemoveSong;
     private javax.swing.JMenuItem libraryShowAllSongs;
-    private javax.swing.JMenuItem librarySortList;
+    private javax.swing.JMenuItem librarySongTitleSort;
+    private javax.swing.JMenu librarySort;
+    private javax.swing.JPanel mediaStreamPanel;
     private javax.swing.JMenu menuMainMenu;
     private javax.swing.JButton pauseButton;
     private javax.swing.JButton playButton;
@@ -273,4 +295,8 @@ public class PlayerGUI extends javax.swing.JFrame {
     private javax.swing.JLabel volumeLabel;
     private javax.swing.JSlider volumeSlider;
     // End of variables declaration//GEN-END:variables
+
+    private javax.swing.JFileChooser fileChooser; 
+
+
 }
